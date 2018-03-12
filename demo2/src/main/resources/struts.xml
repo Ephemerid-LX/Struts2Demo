@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="getParameter" extends="struts-default">
+        <global-results>
+            <result name="success">WEB-INF/jsp/helloWorld.jsp</result>
+        </global-results>
+        <action name="useActionContext" class="cn.xiao.getRequest.GetParameters" method="userActionContext"/>
+        <action name="useServletActionContext" class="cn.xiao.getRequest.GetParameters" method="useServletActionContext"/>
+        <action name="useServletRequestWare" class="cn.xiao.getRequest.GetParameters2" method="useServletRequestAware"/>
+        <action name="useAttributeEncapsulation" class="cn.xiao.getRequest.GetParameters3" method="useAttributeEncapsulation"/>
+        <action name="useModelDriver" class="cn.xiao.getObject.ModelDriverDemoAction" method="useModelDriver"/>
+        <action name="useExpressionEncapsulation" class="cn.xiao.getObject.ExpressionEncapulationDemoAction" method="useExpression"/>
+        <action name="getList" class="cn.xiao.getListOrMap.GetListAction" method="get"/>
+        <action name="getMap" class="cn.xiao.getListOrMap.GetMapAction" method="get"/>
+    </package>
+</struts>

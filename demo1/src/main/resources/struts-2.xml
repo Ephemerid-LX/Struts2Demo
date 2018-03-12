@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="useGlobalResults" extends="struts-default">
+        <!-- 配置全局结果页面，该包下所有返回值为result的方法，都将指定到helloWorld.jsp去 -->
+        <global-results>
+            <result name="result">helloWorld.jsp</result>
+        </global-results>
+        
+        <action name="result1" class="cn.xiao.globalResult.GlobalResult" method="result1">
+
+        </action>
+        <action name="result2" class="cn.xiao.globalResult.GlobalResult" method="result2">
+
+        </action>
+    </package>
+</struts>

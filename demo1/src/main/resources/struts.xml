@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="helloworld" extends="struts-default" namespace="/">
+        <action name="hello" class="cn.xiao.hello.HelloWorldAction">
+            <result name="world">/helloWorld.jsp</result>
+        </action>
+        <action name="demo1" class="cn.xiao.actionImplement.demo1Action">
+            <result name="success">/WEB-INF/jsp/demo1Action.jsp</result>
+        </action>
+        <action name="demo2" class="cn.xiao.actionImplement.demo2Action">
+            <result name="success">/WEB-INF/jsp/demo2Action.jsp</result>
+        </action>
+
+        <!-- 指定了method方法，这个action将不会取调用execute方法，而是method标签所指定的otherMethod方法 -->
+        <action name="otherMethod" class="cn.xiao.actionMethod.ActionMethodDemo" method="otherMethod">
+            <result name="ok">/WEB-INF/jsp/actionOtherMethod.jsp</result>
+        </action>
+    </package>
+
+    <!-- 指定了其他namespace，所以访问路径也这个action的访问还可以使用 ../otterPackage/hello.action -->
+    <package name="otherPackage" extends="struts-default" namespace="/otherPackage">
+        <action name="hello2" class="cn.xiao.hello.HelloWorldAction">
+            <result name="world">/helloWorld.jsp</result>
+        </action>
+    </package>
+    <package name="resultTypeTest" extends="struts-default" namespace="/">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="*Type" class="cn.xiao.resultType.ResultType" method="{1}">
+            <result name="redirect" type="redirect">hello.action</result>
+            <result name="dispatcher" type="dispatcher">/helloWorld.jsp</result>
+        </action>
+    </package>
+    <!-- 另外一个配置文件使用了通配符，会影响到固定字符串的action，如何不起冲突的方法还没有找到 todo -->
+    <!--<include file="struts-1.xml"/>-->
+
+    <include file="struts-2.xml"/>
+</struts>

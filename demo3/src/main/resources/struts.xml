@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="demo3" extends="struts-default">
+        <global-results>
+            <result name="debug">/WEB-INF/jsp/helloWorld.jsp</result>
+        </global-results>
+        <action name="sdebug" class="cn.xiao.sdebug.SeeStackAction">
+            <result name="success">/WEB-INF/jsp/helloWorld.jsp</result>
+        </action>
+        <action name="useSetter" class="cn.xiao.setValue.SetStackValueSetterAction"/>
+        <action name="usePush" class="cn.xiao.setValue.SetStackValuePushAction"/>
+        <action name="useField" class="cn.xiao.setValue.SetStackValueFieldAction"/>
+        <action name="setObject" class="cn.xiao.setValue.SetObjectAction"/>
+        <action name="setList" class="cn.xiao.setValue.SetListAction"/>
+        <action name="setMap" class="cn.xiao.setValue.SetMapAction"/>
+    </package>
+</struts>

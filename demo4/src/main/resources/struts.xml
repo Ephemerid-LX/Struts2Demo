@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="interceptorDemo" extends="struts-default">
+        <!-- 1.声明拦截器 -->
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="my" class="cn.xiao.interceptor.MyInterceptor">
+                <!-- 用来配设置不执行拦截器的action，有多个时，用逗号分隔 -->
+                <!-- 主要可以用在使用通配符，在一个action标签中，匹配多个action时来用 -->
+                <param name="excludeMethods">login</param>
+            </interceptor>
+        </interceptors>
+
+        <action name="login" class="cn.xiao.action.LoginAction">
+            <!--<interceptor-ref name="my">-->
+                <!-- 也可以在这里使用 -->
+                <!--<param name="excludeMethods">login</param>-->
+            <!--</interceptor-ref>-->
+            <result name="success">/WEB-INF/jsp/welcome.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
+
+        <action name="list" class="cn.xiao.action.ListAction">
+            <!-- 2.在action中使用 -->
+            <interceptor-ref name="my"/>
+            <!-- 3.手动开启默认的拦截器，因为在使用了自定义的拦截器后，默认的拦截器将不执行，必须在配置一遍 -->
+            <interceptor-ref name="defaultStack"/>
+            <result name="error">index.jsp</result>
+            <result name="success">/WEB-INF/jsp/list.jsp</result>
+        </action>
+    </package>
+</struts>

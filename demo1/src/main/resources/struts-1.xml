@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <package name="tags" extends="struts-default" namespace="/">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <!-- 在name中可以使用*，在struts2.5中，必须配置上面一句 -->
+        <action name="user_*" class="cn.xiao.attachAction.UserAction" method="{1}">
+            <result name="{1}">/WEB-INF/jsp/attachAction/user_{1}.jsp</result>
+        </action>
+
+        <!-- 可以使用多个*，后面可以使用{1},{2}...等来代表几*所匹配的 -->
+        <action name="*_*" class="cn.xiao.attachAction.{1}Action" method="{2}">
+            <result name="{2}">/WEB-INF/jsp/attachAction/{1}_{2}.jsp</result>
+        </action>
+    </package>
+    <package name="dynamictest" extends="struts-default" namespace="/">
+        <action name="dynamic" class="cn.xiao.attachAction.DynamicAction">
+            <result name="ok">helloWorld.jsp</result>
+            <!-- struts2.5中必须添加(2.3中不必) -->
+            <allowed-methods>test</allowed-methods>
+        </action>
+    </package>
+</struts>
